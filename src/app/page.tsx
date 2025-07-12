@@ -1,9 +1,10 @@
-import { EtherealShape } from '../src/components/EtherealShape.tsx'; // Import it at the top
+import { EtherealShape } from './components/EtherealShape';
 
 export default function Home() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center bg-gray-900 text-white p-8 overflow-hidden">
-      {/* Add the 3D shape */}
+      {/* Add the 3D shape */
+      }
       <EtherealShape />
 
       {/* The rest of your content, but now with a higher z-index to appear on top */}
