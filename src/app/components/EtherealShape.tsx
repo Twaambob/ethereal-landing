@@ -2,29 +2,49 @@
 
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
-import { Mesh } from 'three';
-
+import { Mesh, Vector3 } from 'three';
 
 const SpinningShape = () => {
   const meshRef = useRef<Mesh>(null!);
+  const targetPosition = new Vector3();
 
-  // This hook now also uses the 'state' object, which contains mouse coordinates.
   useFrame((state) => {
     if (meshRef.current) {
-      // Smoothly interpolate the mesh rotation towards the mouse position.
-      // 'lerp' creates a much smoother, more natural motion.
-      meshRef.current.rotation.y += (state.mouse.x * 0.5 - meshRef.current.rotation.y) * 0.01;
-      meshRef.current.rotation.x += (-state.mouse.y * 0.5 - meshRef.current.rotation.x) * 0.01;
+      const { viewport, mouse } = state;
+
+      // Calculate target position based on mouse
+      targetPosition.set(
+        (mouse.x * viewport.width) / 2,
+        (mouse.y * viewport.height) / 2,
+        0
+      );
+
+      // Animate rotation toward target position
+      // If mouse is near center, apply idle rotation
+      const isMouseCentered = Math.abs(mouse.x) < 0.01 && Math.abs(mouse.y) < 0.01;
+      if (isMouseCentered) {
+        meshRef.current.rotation.y += 0.01; // Idle spin
+        meshRef.current.rotation.x += 0.005;
+      } else {
+        // Smoothly rotate toward target
+        meshRef.current.lookAt(targetPosition);
+      }
     }
   });
 
   return (
     <mesh ref={meshRef}>
       <icosahedronGeometry args={[2, 0]} />
-      <meshStandardMaterial color="#ffffff" wireframe />
+      {/* Changed to a non-wireframe material to better see the rotation */}
+      <meshStandardMaterial
+        color="#ffffff"
+        metalness={0.6}
+        roughness={0.2}
+      />
     </mesh>
   );
 };
+
 
 export const EtherealShape = () => {
   return (
