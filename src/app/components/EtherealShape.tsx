@@ -4,20 +4,23 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import { Mesh } from 'three';
 
+
 const SpinningShape = () => {
   const meshRef = useRef<Mesh>(null!);
 
-  // This hook runs on every single frame, making animation possible
-  useFrame((state, delta) => {
+  // This hook now also uses the 'state' object, which contains mouse coordinates.
+  useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.2;
-      meshRef.current.rotation.x += delta * 0.2;
+      // Smoothly interpolate the mesh rotation towards the mouse position.
+      // 'lerp' creates a much smoother, more natural motion.
+      meshRef.current.rotation.y += (state.mouse.x * 0.5 - meshRef.current.rotation.y) * 0.1;
+      meshRef.current.rotation.x += (-state.mouse.y * 0.5 - meshRef.current.rotation.x) * 0.1;
     }
   });
 
   return (
     <mesh ref={meshRef}>
-      <icosahedronGeometry args={[2, 0]} /> {/* A 20-sided shape */}
+      <icosahedronGeometry args={[2, 0]} />
       <meshStandardMaterial color="#ffffff" wireframe />
     </mesh>
   );
