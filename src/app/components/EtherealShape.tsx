@@ -14,7 +14,7 @@ const SpinningShape = () => {
       // Smoothly interpolate the mesh rotation towards the mouse position.
       // 'lerp' creates a much smoother, more natural motion.
       meshRef.current.rotation.y += (state.mouse.x * 0.5 - meshRef.current.rotation.y) * 0.1;
-      meshRef.current.rotation.x += (-state.mouse.y * 0.5 - meshRef.current.rotation.x) * 0.1;
+      meshRef.current.rotation.x += (-state.mouse.y * 0.5 - meshRef.current.rotation.x) * 0.01;
     }
   });
 
