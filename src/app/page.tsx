@@ -34,7 +34,7 @@ export default function Home() {
         </div>
         
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pointer-events-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pointer-events-none">
           <FeatureCard
             title="Interactive Design"
             description="Engaging users with meaningful micro-interactions and a dynamic interface that responds to them."
@@ -51,7 +51,7 @@ export default function Home() {
       </AnimatedSection>
        <AnimatedSection>
         {/* Make the container interactive */}
-        <div className="pointer-events-auto">
+        <div className="pointer-events-none">
           <ContactForm />
         </div>
       </AnimatedSection>
