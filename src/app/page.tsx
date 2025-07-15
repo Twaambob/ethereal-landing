@@ -5,8 +5,8 @@ import { ContactForm } from './components/ContactForm';
 
 export default function Home() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center bg-gray-900 text-white p-8 overflow-x-hidden">
-      <EtherealShape />
+    <main className="relative flex min-h-screen flex-col items-center bg-gray-900 text-white p-8 overflow-x-hidden pointer-events-none">
+      <EtherealShape/>
 
       {/* Hero Section */}
       
@@ -26,7 +26,7 @@ export default function Home() {
       {/* Features Section */}
       <AnimatedSection>
         
-        <div className="pointer-events-none">
+        <div className="pointer-events-auto">
             <h2 className="text-4xl font-bold mb-4">Core Principles</h2>
             <p className="max-w-2xl mx-auto text-gray-400 mb-12">
               We combine aesthetics with performance to deliver an unforgettable user journey.
@@ -51,7 +51,7 @@ export default function Home() {
       </AnimatedSection>
        <AnimatedSection>
         {/* Make the container interactive */}
-        <div className="pointer-events-none">
+        <div className="pointer-events-auto">
           <ContactForm />
         </div>
       </AnimatedSection>
