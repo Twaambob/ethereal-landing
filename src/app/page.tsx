@@ -1,6 +1,7 @@
 import { EtherealShape } from './components/EtherealShape';
 import { AnimatedSection } from './components/AnimatedSection';
-import { FeatureCard } from './components/FeatureCard';  // Import it
+import { FeatureCard } from './components/FeatureCard';
+import { ContactForm } from './components/ContactForm';
 
 export default function Home() {
   return (
@@ -46,6 +47,12 @@ export default function Home() {
             title="Intuitive UX"
             description="Crafting a seamless user journey that feels natural and effortless from the very first click."
           />
+        </div>
+      </AnimatedSection>
+       <AnimatedSection>
+        {/* Make the container interactive */}
+        <div className="pointer-events-auto">
+          <ContactForm />
         </div>
       </AnimatedSection>
     </main>
