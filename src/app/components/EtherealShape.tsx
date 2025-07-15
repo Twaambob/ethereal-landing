@@ -37,9 +37,9 @@ const SpinningShape = () => {
       <icosahedronGeometry args={[2, 0]} />
       {/* Changed to a non-wireframe material to better see the rotation */}
       <meshStandardMaterial
-        color="#ffffff"
+        color="#3f3b3bff"
         metalness={0.6}
-        roughness={0.2}
+        roughness={0.7}
       />
     </mesh>
   );
